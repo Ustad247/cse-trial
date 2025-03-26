@@ -137,6 +137,28 @@
     } else {
         console.log('Admin login already exists.');
     }
+            function validateLogin(event) {
+            event.preventDefault();
+    
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+    
+            // Check if the entered credentials match a user in the array
+            const matchedUser = users.find(user => user.username === username && user.password === password);
+    
+            if (matchedUser) {
+                if (matchedUser.role === "admin") {
+                    alert("Welcome, Admin!");
+                    // Redirect to a special admin page or enable admin-only features
+                    window.location.href = "main.html";
+                } else {
+                    alert("Login successful!");
+                    window.location.href = "main.html"; // Redirect to the normal user dashboard
+                }
+            } else {
+                alert("Invalid username or password. Please try again.");
+            }
+        }
     </script>
     
 </body>
