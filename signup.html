@@ -97,35 +97,51 @@
     <footer>© 2025-26 Champions' School For Excellence</footer>
 
     <script>
-        function handleSignup(event) {
-            event.preventDefault();
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
 
-            const newUsername = document.getElementById("new-username").value;
-            const newPassword = document.getElementById("new-password").value;
+// Define the path to the Git repository folder
+const repoFolder = './path-to-your-git-repo/users'; // Replace with your actual repository path
+const filePath = path.join(repoFolder, 'logins.json');
 
-            // Retrieve existing users from localStorage or initialize an empty array
-            let users = JSON.parse(localStorage.getItem("users")) || [];
+// Function to hash passwords securely
+function hashPassword(password) {
+    return crypto.createHash('sha256').update(password).digest('hex'); // Secure hashing using SHA-256
+}
 
-            // Check if the username and password already exist
-            const userExists = users.some(
-                user => user.username === newUsername && user.password === newPassword
-            );
+function handleSignup(event) {
+    event.preventDefault();
 
-            if (userExists) {
-                // Notify the user and redirect to login
-                alert("This username and password already exist. Please log in.");
-                window.location.href = "login.html"; // Redirect to login page
-            } else {
-                // Add the new user's credentials to the users array
-                users.push({ username: newUsername, password: newPassword });
+    const newUsername = document.getElementById("new-username").value;
+    const newPassword = document.getElementById("new-password").value;
 
-                // Save the updated users array back to localStorage
-                localStorage.setItem("users", JSON.stringify(users));
+    // Load existing users from the JSON file or initialize an empty array
+    let users = [];
+    if (fs.existsSync(filePath)) {
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
+        users = JSON.parse(fileContent);
+    }
 
-                alert("Signup successful! You can now log in.");
-                window.location.href = "index.html"; // Redirect to login page
-            }
-        }
+    // Check if the username already exists
+    const userExists = users.some(user => user.username === newUsername);
+
+    if (userExists) {
+        // Notify the user and redirect to login page
+        alert("This username already exists. Please log in.");
+        window.location.href = "index.html"; // Redirect to login page
+    } else {
+        // Hash the password and add the new user's credentials
+        users.push({ username: newUsername, password: hashPassword(newPassword) });
+
+        // Save the updated users array back to the JSON file
+        fs.writeFileSync(filePath, JSON.stringify(users, null, 2), 'utf-8');
+
+        alert("Signup successful! You can now log in.");
+        window.location.href = "index.html"; // Redirect to login page
+    }
+}
+
     </script>
 </body>
 </html>
