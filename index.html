@@ -104,61 +104,79 @@
     <footer>© 2025-26 Champions' School For Excellence </footer>
 
 <script>
-    const fs = require('fs');
-    const path = require('path');
-    const crypto = require('crypto');
-    
-    // Define the path to the Git repository folder
-    const repoFolder = './path-to-your-git-repo/users'; // Replace with the actual path
-    const filePath = path.join(repoFolder, 'logins.json');
-    
-    // Function to hash passwords securely
-    function hashPassword(password) {
-        return crypto.createHash('sha256').update(password).digest('hex'); // Using SHA-256 for hashing
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
+
+// Path to the Git repository folder
+const repoFolder = './path-to-your-git-repo/users'; // Replace with the actual path to your Git repo
+const filePath = path.join(repoFolder, 'logins.json');
+
+// Function to hash passwords securely
+function hashPassword(password) {
+    return crypto.createHash('sha256').update(password).digest('hex'); // Using SHA-256 for hashing
+}
+
+// Function to verify login
+function login(username, password) {
+    if (fs.existsSync(filePath)) {
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
+        const logins = JSON.parse(fileContent);
+
+        // Check if the username and hashed password match an existing entry
+        const user = logins.find(
+            (login) => login.username === username && login.password === hashPassword(password)
+        );
+        if (user) {
+            console.log('Login successful! Redirecting to main.html...');
+            // Simulate redirection to main.html (browser-specific implementation required)
+            return 'Redirecting to main.html';
+        } else {
+            console.log('Invalid username or password.');
+            return 'Invalid credentials';
+        }
+    } else {
+        console.log('No user data found.');
+        return 'No user data';
     }
-    
-    // Example login credentials
-    const predefinedAdmin = { username: 'admin', password: hashPassword('securepassword123') };
-    
-    // Load existing logins from the JSON file (if it exists)
+}
+
+// Function to register a user
+function register(username, password) {
     let logins = [];
     if (fs.existsSync(filePath)) {
         const fileContent = fs.readFileSync(filePath, 'utf-8');
         logins = JSON.parse(fileContent);
     }
-    
-    // Check if the admin credentials already exist, and add them if not
-    if (!logins.some(login => login.username === predefinedAdmin.username)) {
-        logins.push(predefinedAdmin);
-    
-        // Write updated logins array back to the JSON file
-        fs.writeFileSync(filePath, JSON.stringify(logins, null, 2), 'utf-8');
-        console.log('Admin login added and saved to Git repository.');
-    } else {
-        console.log('Admin login already exists.');
+
+    // Check if the username already exists
+    if (logins.some((login) => login.username === username)) {
+        console.log('Username already exists.');
+        return 'User already exists';
     }
-            function validateLogin(event) {
-            event.preventDefault();
-    
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-    
-            // Check if the entered credentials match a user in the array
-            const matchedUser = users.find(user => user.username === username && user.password === password);
-    
-            if (matchedUser) {
-                if (matchedUser.role === "admin") {
-                    alert("Welcome, Admin!");
-                    // Redirect to a special admin page or enable admin-only features
-                    window.location.href = "main.html";
-                } else {
-                    alert("Login successful!");
-                    window.location.href = "main.html"; // Redirect to the normal user dashboard
-                }
-            } else {
-                alert("Invalid username or password. Please try again.");
-            }
-        }
+
+    // Add the new user
+    logins.push({ username, password: hashPassword(password) });
+
+    // Write updated logins array back to the JSON file
+    fs.writeFileSync(filePath, JSON.stringify(logins, null, 2), 'utf-8');
+    console.log('User registered and saved to Git repository.');
+    return 'Registration successful';
+}
+
+// Example usage
+const action = process.argv[2]; // "login" or "register"
+const username = process.argv[3];
+const password = process.argv[4];
+
+if (action === 'register') {
+    register(username, password);
+} else if (action === 'login') {
+    login(username, password);
+} else {
+    console.log('Invalid action. Use "register" or "login".');
+}
+
     </script>
     
 </body>
