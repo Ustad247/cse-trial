@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions' School For Excellence</title>
+    <link rel="stylesheet" href="about.css"> <!-- Link to external CSS -->
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1 class="title">Champions' School For Excellence</h1>
+        <nav class="nav-bar">
+            <ul class="nav-links">
+                <li><a href="main.html">Home</a></li>
+                <li><a href="class.html">Resources</a></li>
+                <li><a href="payment.html">Payment</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="index.html" class="sign-out" onclick="handleSignOut(event)">Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h2>About Us</h2>
+            <p class="about-description">
+                Welcome to Champions School For Excellence! We are committed to providing the best content, resources, and services to our visitors.
+            </p>
+            <p class="about-description">
+                Founded in 2012 by Mr. Parixeet G. Patel, our team works passionately to achieve the goal: <strong>Create Inventors, Not Followers</strong>. Thank you for visiting!
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>© 2025-26 Champions' School For Excellence</p>
+    </footer>
+
+    <script>
+    function handleSignOut(event) {
+        event.preventDefault(); // Prevent the default redirection behavior
+    
+        // Redirect to index.html after clearing browser history
+        window.location.replace("index.html");
+    }
+    </script>
+</body>
+</html>

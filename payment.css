@@ -1,0 +1,129 @@
+/* Global Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, yellow, #0056b3);
+  color: #fff;
+  text-align: center;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: orange;
+  text-align: left;
+}
+
+.nav-bar {
+  text-align: right;
+}
+
+.nav-links {
+  list-style: none;
+  display: inline-flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: orange;
+  padding: 10px 15px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: orange;
+  color: #fff;
+}
+
+.nav-links .active {
+  background-color: orange;
+  color: #fff;
+}
+
+.nav-links .sign-out {
+  background-color: #ff4c4c;
+  color: #fff;
+}
+
+.nav-links .sign-out:hover {
+  background-color: #cc0000;
+}
+
+/* Main Content Styles */
+.main-content {
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.payment-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 30px;
+  background: linear-gradient(135deg, #ffffff, #f0f0f0);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.payment-container h2 {
+  font-size: 1.8rem;
+  color: orange;
+  margin-bottom: 10px;
+}
+
+.payment-container p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.pay-now-button {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pay-now-button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+/* Footer Styles */
+.footer {
+  color: black;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.9rem;
+}

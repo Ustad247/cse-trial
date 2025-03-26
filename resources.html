@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions' School For Excellence</title>
+    <link rel="stylesheet" href="resources.css"> <!-- Link to the external CSS -->
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1 class="title">Champions' School For Excellence</h1>
+        <nav class="nav-bar">
+            <ul class="nav-links">
+                <li><a href="main.html">Home</a></li>
+                <li><a href="class.html" class="active">Resources</a></li>
+                <li><a href="payment.html">Payment</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="index.html" class="sign-out" onclick="handleSignOut(event)">Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h2>Resources</h2>
+        <div class="resource-buttons">
+            <button onclick="window.location.href='maths.html';" class="resource-btn">Maths</button>
+            <button onclick="window.location.href='science.html';" class="resource-btn">Science</button>
+            <button onclick="window.location.href='ss.html';" class="resource-btn">Social Studies</button>
+            <button onclick="window.location.href='lpoi.html';" class="resource-btn">LPOI</button>
+            <button onclick="window.location.href='computer.html';" class="resource-btn">Computer</button>
+            <button onclick="window.location.href='english.html';" class="resource-btn">English</button>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>© 2025-26 Champions' School For Excellence</p>
+    </footer>
+    <script>
+        function handleSignOut(event) {
+    event.preventDefault(); // Prevent the default redirection behavior
+
+    // Redirect to index.html after clearing browser history
+    window.location.replace("index.html");
+}
+
+    </script>
+</body>
+</html>

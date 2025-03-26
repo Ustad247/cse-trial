@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page || CSE</title>
+    <style>
+        /* Global body styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url(blur.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 70%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signup-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            width: 350px;
+            text-align: center;
+        }
+
+        .signup-container h1 {
+            font-size: 1.8rem;
+            color: #007bff;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .signup-container label {
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .signup-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .signup-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .signup-container button:hover {
+            background-color: #218838;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Create Account</h1>
+        <form id="signup-form" onsubmit="handleSignup(event)">
+            <label for="new-username">Username</label>
+            <input type="text" id="new-username" name="new-username" placeholder="Enter your username" required>
+            
+            <label for="new-password">Password</label>
+            <input type="password" id="new-password" name="new-password" placeholder="Enter your password" required>
+            
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+    
+
+    <footer>© 2025-26 Champions' School For Excellence</footer>
+
+    <script>
+        function handleSignup(event) {
+            event.preventDefault();
+
+            const newUsername = document.getElementById("new-username").value;
+            const newPassword = document.getElementById("new-password").value;
+
+            // Retrieve existing users from localStorage or initialize an empty array
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            // Check if the username and password already exist
+            const userExists = users.some(
+                user => user.username === newUsername && user.password === newPassword
+            );
+
+            if (userExists) {
+                // Notify the user and redirect to login
+                alert("This username and password already exist. Please log in.");
+                window.location.href = "login.html"; // Redirect to login page
+            } else {
+                // Add the new user's credentials to the users array
+                users.push({ username: newUsername, password: newPassword });
+
+                // Save the updated users array back to localStorage
+                localStorage.setItem("users", JSON.stringify(users));
+
+                alert("Signup successful! You can now log in.");
+                window.location.href = "index.html"; // Redirect to login page
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions' School For Excellence</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS -->
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1 class="title">Champions' School For Excellence</h1>
+        <nav class="nav-bar">
+            <ul class="nav-links">
+                <li><a href="main.html">Home</a></li>
+                <li><a href="class.html">Resources</a></li>
+                <li><a href="payment.html">Payment</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="index.html" class="sign-out" onclick="handleSignOut(event)">Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    
+    <footer>© 2025-26 Champions' School For Excellence</footer>
+
+    <!-- Main Content -->
+    <main class="main-content"> </main>
+    <script>function handleSignOut(event) {
+        event.preventDefault(); // Prevent the default redirection behavior
+    
+        // Redirect to index.html after clearing browser history
+        window.location.replace("index.html");
+    }
+    </script>
+    </body>
+    </html>
+        
+    

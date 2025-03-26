@@ -1,0 +1,103 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url(blur.jpg);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 70%;
+    color: #fff;
+    text-align: center;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between; /* Title on left, buttons on right */
+    align-items: center;
+    background-color: #fff;
+    color: orange;
+    padding: 15px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+    flex-shrink: 0; /* Prevent shrinking */
+    text-align: left; /* Align text to the left */
+}
+
+.nav-bar {
+    flex-grow: 1;
+    text-align: right; /* Align buttons to the right */
+}
+
+.nav-links {
+    list-style: none;
+    display: inline-flex; /* Inline layout for buttons */
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: orange;
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: orange;
+    color: #fff;
+}
+
+.nav-links .sign-out {
+    background-color: #ff4c4c;
+    color: #fff;
+}
+
+.nav-links .sign-out:hover {
+    background-color: #cc0000;
+}
+
+/* Main Content Styles */
+.main-content {
+    margin: 50px auto;
+    padding: 20px;
+}
+
+main h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: orange;
+}
+
+main p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Footer Styles */
+ 
+footer {
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #000000;
+}

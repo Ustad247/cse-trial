@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page || CSE</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url(blur.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 70%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 30px 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 350px;
+        }
+
+        .login-container h1 {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #0056b3;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .login-container label {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 6px; /* Reduced padding */
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.9rem; /* Smaller font size */
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .login-container .signup-btn {
+            margin-top: 10px;
+            background-color: #28a745;
+        }
+
+        .login-container .signup-btn:hover {
+            background-color: #218838;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 0.8rem;
+            text-align: center;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="login-form" onsubmit="validateLogin(event)">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            
+            <button type="submit">Log In</button>
+            <button type="button" class="signup-btn" onclick="window.location.href='signup.html';">Sign Up</button>
+        </form>
+    </div>
+
+    <footer>© 2025-26 Champions' School For Excellence </footer>
+
+<script>
+    const fs = require('fs');
+    const path = require('path');
+    const crypto = require('crypto');
+    
+    // Define the path to the Git repository folder
+    const repoFolder = './path-to-your-git-repo/users'; // Replace with the actual path
+    const filePath = path.join(repoFolder, 'logins.json');
+    
+    // Function to hash passwords securely
+    function hashPassword(password) {
+        return crypto.createHash('sha256').update(password).digest('hex'); // Using SHA-256 for hashing
+    }
+    
+    // Example login credentials
+    const predefinedAdmin = { username: 'admin', password: hashPassword('securepassword123') };
+    
+    // Load existing logins from the JSON file (if it exists)
+    let logins = [];
+    if (fs.existsSync(filePath)) {
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
+        logins = JSON.parse(fileContent);
+    }
+    
+    // Check if the admin credentials already exist, and add them if not
+    if (!logins.some(login => login.username === predefinedAdmin.username)) {
+        logins.push(predefinedAdmin);
+    
+        // Write updated logins array back to the JSON file
+        fs.writeFileSync(filePath, JSON.stringify(logins, null, 2), 'utf-8');
+        console.log('Admin login added and saved to Git repository.');
+    } else {
+        console.log('Admin login already exists.');
+    }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions' School For Excellence - Payment Gateway</title>
+    <link rel="stylesheet" href="payment.css"> <!-- Link to external CSS -->
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1 class="title">Champions' School For Excellence</h1>
+        <nav class="nav-bar">
+            <ul class="nav-links">
+                <li><a href="main.html">Home</a></li>
+                <li><a href="class.html">Resources</a></li>
+                <li><a href="payment.html" class="active">Payment</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="index.html" class="sign-out" onclick="handleSignOut(event)">Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="payment-container">
+            <h2>Secure Payment Gateway</h2>
+            <p>Experience seamless payments powered by Razorpay.</p>
+            <button id="pay-now" class="pay-now-button">Pay Now</button>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>© 2025-26 Champions' School For Excellence</p>
+    </footer>
+
+    <!-- Razorpay Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        document.getElementById('pay-now').onclick = function (e) {
+            e.preventDefault();
+
+            var options = {
+                "key": "YOUR_KEY_ID", // Replace with your Razorpay Key ID
+                "amount": "50000", // Amount in paisa (50000 = ₹500)
+                "currency": "INR",
+                "name": "Champions' School For Excellence",
+                "description": "Test Transaction",
+                "image": "https://yourcompany.com/logo.png", // Optional: Company logo
+                "handler": function (response) {
+                    alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+                },
+                "prefill": {
+                    "name": "John Doe",
+                    "email": "john.doe@example.com",
+                    "contact": "9876543210"
+                },
+                "theme": {
+                    "color": "#007bff"
+                }
+            };
+
+            var rzp = new Razorpay(options);
+            rzp.open();
+        };
+    
+            function handleSignOut(event) {
+    event.preventDefault(); // Prevent the default redirection behavior
+
+    // Redirect to index.html after clearing browser history
+    window.location.replace("index.html");
+}
+
+    </script>
+</body>
+</html>
